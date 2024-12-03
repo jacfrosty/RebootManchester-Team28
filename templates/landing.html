@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lloyds Bank - Summary</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <style>
+        /* Additional inline CSS */
+        .scrollable-tiles {
+            display: flex;
+            overflow-x: auto;
+            gap: 10px;
+            padding: 10px;
+            margin: 20px auto;
+            max-width: 90%;
+        }
+
+        .tile {
+            min-width: 100px;
+            padding: 15px;
+            background: var(--button-background);
+            color: white;
+            border-radius: 8px;
+            text-align: center;
+            cursor: pointer;
+        }
+
+        .tile:hover {
+            background: var(--button-hover);
+        }
+
+        .bank-summary {
+            background: rgba(0, 128, 0, 0.1);
+            border: 1px solid rgba(0, 128, 0, 0.5);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px auto;
+            max-width: 90%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .account-details {
+            text-align: left;
+        }
+
+        .balance-details {
+            text-align: right;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <!-- Banner Header -->
+    <div class="banner">
+        Lloyds Bank
+    </div>
+
+    <!-- Welcome Section -->
+    <div style="text-align: center; margin-top: 20px;">
+        <h1>Good afternoon Sufyan</h1>
+    </div>
+
+    <!-- Scrollable Tiles -->
+    <div class="scrollable-tiles">
+        <div class="tile">Summary</div>
+        <a href="/dream_wallet" class="tile">Dream Wallet</a>
+        <div class="tile">Save & Invest</div>
+        <div class="tile">Borrow</div>
+        <div class="tile">Insure</div>
+    </div>
+
+    <!-- Bank Account Summary -->
+    <div class="bank-summary">
+        <!-- Account Details -->
+        <div class="account-details">
+            <h2>Club Lloyds</h2>
+            <p>12-34-56 / 12345678</p>
+        </div>
+        <!-- Balance Details -->
+        <div class="balance-details">
+            £500
+        </div>
+    </div>
+
+    <!-- Navigation to Dream Wallet -->
+    <div style="text-align: center; margin-top: 20px;">
+        <form action="/dream_wallet" method="GET">
+            <button type="submit">Go to Dream Wallet</button>
+        </form>
+    </div>
+</body>
+</html>
+

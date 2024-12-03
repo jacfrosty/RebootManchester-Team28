@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Set Your Dream</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <style>
+        /* Styles for the accordion-like form */
+        .question {
+            display: none; /* Hidden by default */
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(0, 128, 0, 0.1);
+            border: 1px solid rgba(0, 128, 0, 0.5);
+            border-radius: 8px;
+        }
+
+        .question.active {
+            display: block; /* Show when active */
+        }
+
+        .question label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        .question select, 
+        .question input {
+            width: calc(100% - 20px); /* Fit within the container */
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 0.9rem;
+        }
+
+        .question button {
+            background: #28a745; /* Green button */
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .question button:hover {
+            background: #218838; /* Darker green on hover */
+        }
+    </style>
+</head>
+<body>
+    <!-- Banner Header -->
+    <div class="banner">
+        Set Your Dream
+    </div>
+
+    <!-- Accordion Form -->
+    <div style="max-width: 500px; margin: 20px auto;">
+        <form id="dream-form" action="/summary" method="POST">
+            <!-- Question 1: Short or Long Term -->
+            <div class="question active" id="question-1">
+                <label for="goal-type">What type of dream are you setting?</label>
+                <select id="goal-type" name="goal_type" required>
+                    <option value="" disabled selected>Select your Dream type</option>
+                    <option value="short-term">Short-term Dream</option>
+                    <option value="long-term">Long-term Dream</option>
+                </select>
+                <button type="button" onclick="showNextQuestion(2)">Next</button>
+            </div>
+
+            <!-- Question 2: What is your dream? -->
+            <div class="question" id="question-2">
+                <label for="dream">What is your dream?</label>
+                <input type="text" id="dream" name="dream" placeholder="e.g., Buy a house, Start a business" required>
+                <button type="button" onclick="showNextQuestion(3)">Next</button>
+            </div>
+
+            <!-- Question 3: Duration -->
+            <div class="question" id="question-3">
+                <label for="duration">How long do you need to achieve this dream? (in months)</label>
+                <input type="number" id="duration" name="duration" min="1" max="240" placeholder="Enter duration in months" required>
+                <button type="button" onclick="showNextQuestion(4)">Next</button>
+            </div>
+
+            <!-- Question 4: Amount -->
+            <div class="question" id="question-4">
+                <label for="amount">What is your target savings amount for this dream? (£)</label>
+                <input type="number" id="amount" name="amount" placeholder="Enter target amount" required>
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+
+    <!-- JavaScript to Handle Accordion Behavior -->
+    <script>
+        function showNextQuestion(questionNumber) {
+            // Hide all questions
+            const questions = document.querySelectorAll('.question');
+            questions.forEach(question => question.classList.remove('active'));
+
+            // Show the current question
+            const currentQuestion = document.getElementById(`question-${questionNumber}`);
+            currentQuestion.classList.add('active');
+        }
+    </script>
+</body>
+</html>
+
