@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dream Summary</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <style>
+        /* Summary Page Styles */
+        .summary-container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 15px;
+            background: rgba(0, 128, 0, 0.1);
+            border: 1px solid rgba(0, 128, 0, 0.5);
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .summary-container h1 {
+            font-size: 1.8rem;
+            color: #28a745;
+        }
+
+        .goal-details {
+            margin: 20px 0;
+            text-align: left;
+        }
+
+        .goal-details p {
+            font-size: 1rem;
+            margin: 5px 0;
+        }
+
+        .progress-bar-container {
+            margin: 20px 0;
+            background: #f3f3f3;
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #ccc;
+        }
+
+        .progress-bar {
+            height: 20px;
+            background: #28a745;
+            width: 0; /* Dynamically updated with JavaScript */
+            transition: width 0.4s ease-in-out;
+        }
+
+        .progress-text {
+            margin-top: 10px;
+            font-size: 1rem;
+            font-weight: bold;
+        }
+
+        .ai-recommendations {
+            margin-top: 20px;
+            text-align: left;
+            background: #222;
+            color: white;
+            padding: 10px;
+            border-radius: 8px;
+        }
+
+        .ai-recommendations h3 {
+            margin: 0 0 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="banner">
+        Dream Summary
+    </div>
+
+    <div class="summary-container">
+        <h1>Your {{ dream }} Progress</h1>
+
+        <!-- Display Dream and Goal Details -->
+        <div class="goal-details">
+            <p><strong>Goal Type:</strong> {{ goal_type }}</p>
+            <p><strong>Dream:</strong> {{ dream }}</p>
+            <p><strong>Duration:</strong> {{ duration }} months</p>
+            <p><strong>Target Amount:</strong> £{{ amount }}</p>
+            <p><strong>Saved Amount:</strong> £{{ saved_amount }}</p>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="progress-bar-container">
+            <div id="progress-bar" class="progress-bar"></div>
+        </div>
+        <div class="progress-text" id="progress-text"></div>
+
+        <!-- AI Recommendations -->
+        <div class="ai-recommendations">
+            <h3>AI Recommendations:</h3>
+            <p>{{ recommendations }}</p>
+        </div>
+    </div>
+
+    <!-- JavaScript to Calculate and Display Progress -->
+    <script>
+        const savedAmount = {{ saved_amount }};
+        const targetAmount = {{ amount }};
+        const duration = {{ duration }};
+        const monthsPassed = {{ months_passed }};
+
+        // Calculate progress
+        const progressPercentage = Math.min((savedAmount / targetAmount) * 100, 100);
+        const progressBar = document.getElementById("progress-bar");
+        const progressText = document.getElementById("progress-text");
+
+        // Update progress bar and text
+        progressBar.style.width = progressPercentage + "%";
+        progressText.textContent = `${progressPercentage.toFixed(1)}% of your goal achieved`;
+
+        // Add time remaining
+        const monthsRemaining = duration - monthsPassed;
+        if (monthsRemaining > 0) {
+            progressText.textContent += ` (${monthsRemaining} months remaining)`;
+        } else {
+            progressText.textContent += ` (Goal period ended)`;
+        }
+    </script>
+</body>
+</html>
+
